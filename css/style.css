@@ -1,0 +1,1090 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #f4f7f5;
+    --surface: #ffffff;
+    --border: #e2e8e4;
+
+    --text: #111111;
+    --muted: #6b7280;
+
+    --primary: #111111;
+    --primary-hover: #242424;
+
+    --green: #16a34a;
+    --green-dark: #15803d;
+    --green-light: #dcfce7;
+
+    --danger: #dc2626;
+    --danger-hover: #b91c1c;
+    --danger-light: #fee2e2;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+
+    min-height: 100vh;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    width: min(1200px, calc(100% - 40px));
+
+    margin: 0 auto;
+
+    padding: 40px 0;
+}
+
+
+/* ================================= */
+/* HEADER */
+/* ================================= */
+
+.header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 28px;
+
+    margin-bottom: 6px;
+
+    letter-spacing: -0.5px;
+}
+
+.header p {
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* ================================= */
+/* SELETOR DE MÊS */
+/* ================================= */
+
+.mes-selector {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 5px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.mes-selector button {
+    width: 36px;
+    height: 36px;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--text);
+
+    border-radius: 7px;
+
+    font-size: 18px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.mes-selector button:hover {
+    background: var(--green-light);
+
+    color: var(--green-dark);
+}
+
+#mes-atual {
+    min-width: 130px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* ================================= */
+/* RESUMO */
+/* ================================= */
+
+.resumo {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 16px;
+
+    margin-bottom: 30px;
+}
+
+.resumo-item {
+    position: relative;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.03);
+
+    overflow: hidden;
+}
+
+.resumo-item::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 4px;
+    height: 100%;
+
+    background: var(--primary);
+}
+
+.resumo-item span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.03em;
+}
+
+.resumo-item strong {
+    display: block;
+
+    font-size: 25px;
+
+    letter-spacing: -0.5px;
+}
+
+
+/* ================================= */
+/* POUPANÇA */
+/* ================================= */
+
+.poupanca-card {
+    position: relative;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    margin-top: 16px;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.03);
+
+    overflow: hidden;
+}
+
+.poupanca-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 4px;
+    height: 100%;
+
+    background: var(--green);
+}
+
+.poupanca-conteudo span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.03em;
+}
+
+.poupanca-conteudo strong {
+    display: block;
+
+    color: var(--green-dark);
+
+    font-size: 25px;
+
+    letter-spacing: -0.5px;
+}
+
+#adicionar-poupanca {
+    margin-top: 12px;
+
+    border: none;
+
+    background: var(--green);
+
+    color: white;
+
+    padding: 8px 13px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+#adicionar-poupanca:hover {
+    background: var(--green-dark);
+}
+
+#adicionar-poupanca:active {
+    transform: scale(0.98);
+}
+
+
+/* ================================= */
+/* CONTAS */
+/* ================================= */
+
+.contas {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.contas-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 20px 22px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.contas-header h2 {
+    font-size: 18px;
+
+    letter-spacing: -0.2px;
+}
+
+
+/* ================================= */
+/* BOTÃO ADICIONAR CONTA */
+/* ================================= */
+
+#adicionar-conta {
+    border: none;
+
+    background: var(--primary);
+
+    color: white;
+
+    padding: 10px 15px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+#adicionar-conta:hover {
+    background: var(--primary-hover);
+}
+
+#adicionar-conta:active {
+    transform: scale(0.98);
+}
+
+
+/* ================================= */
+/* TABELA */
+/* ================================= */
+
+.tabela-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f8faf9;
+}
+
+th {
+    text-align: left;
+
+    padding: 14px 22px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.06em;
+}
+
+td {
+    padding: 16px 22px;
+
+    border-top: 1px solid var(--border);
+
+    font-size: 14px;
+}
+
+tbody tr {
+    transition: background 0.15s ease;
+}
+
+tbody tr:hover {
+    background: #f8faf9;
+}
+
+
+/* ================================= */
+/* VALOR */
+/* ================================= */
+
+td:nth-child(3) {
+    font-weight: 600;
+}
+
+
+/* ================================= */
+/* STATUS - PAGAR */
+/* ================================= */
+
+.botao-pagar {
+    border: none;
+
+    background: var(--danger-light);
+
+    color: var(--danger);
+
+    padding: 7px 12px;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.botao-pagar:hover {
+    background: var(--danger);
+
+    color: white;
+}
+
+
+/* ================================= */
+/* STATUS - PAGO */
+/* ================================= */
+
+.status-pago {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    color: var(--green-dark);
+
+    background: var(--green-light);
+
+    padding: 6px 10px;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* ================================= */
+/* BOTÃO EXCLUIR */
+/* ================================= */
+
+.botao-excluir {
+    border: none;
+
+    background: transparent;
+
+    color: #9ca3af;
+
+    padding: 6px 8px;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.botao-excluir:hover {
+    background: var(--danger-light);
+
+    color: var(--danger);
+}
+
+
+/* ================================= */
+/* MODAL */
+/* ================================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+
+    z-index: 1000;
+}
+
+.modal-overlay.ativo {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+
+/* ================================= */
+/* CAIXA DO MODAL */
+/* ================================= */
+
+.modal {
+    width: min(100%, 460px);
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.18);
+
+    overflow: hidden;
+
+    transform: translateY(10px) scale(0.98);
+
+    transition:
+        transform 0.2s ease;
+}
+
+.modal-overlay.ativo .modal {
+    transform: translateY(0) scale(1);
+}
+
+
+/* ================================= */
+/* CABEÇALHO DO MODAL */
+/* ================================= */
+
+.modal-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 20px;
+
+    padding: 22px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-header h2 {
+    font-size: 20px;
+
+    margin-bottom: 5px;
+
+    letter-spacing: -0.3px;
+}
+
+.modal-header p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+
+/* ================================= */
+/* BOTÃO FECHAR */
+/* ================================= */
+
+.modal-fechar {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    border-radius: 8px;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.modal-fechar:hover {
+    background: var(--danger-light);
+
+    color: var(--danger);
+}
+
+
+/* ================================= */
+/* FORMULÁRIOS DOS MODAIS */
+/* ================================= */
+
+#form-conta,
+#form-poupanca {
+    padding: 22px;
+}
+
+
+/* ================================= */
+/* CAMPOS */
+/* ================================= */
+
+.campo {
+    margin-bottom: 18px;
+}
+
+.campo:last-of-type {
+    margin-bottom: 0;
+}
+
+.campo label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.campo input {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.campo input::placeholder {
+    color: #9ca3af;
+}
+
+.campo input:focus {
+    border-color: var(--green);
+
+    box-shadow:
+        0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+
+/* ================================= */
+/* CAMPO DE VALOR */
+/* ================================= */
+
+.campo-valor {
+    display: flex;
+
+    align-items: center;
+
+    height: 44px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    overflow: hidden;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.campo-valor:focus-within {
+    border-color: var(--green);
+
+    box-shadow:
+        0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+.campo-valor span {
+    padding-left: 13px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.campo-valor input {
+    height: 100%;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    padding-left: 8px;
+}
+
+.campo-valor input:focus {
+    border: none;
+
+    box-shadow: none;
+}
+
+
+/* ================================= */
+/* AÇÕES DO MODAL */
+/* ================================= */
+
+.modal-acoes {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 24px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--border);
+}
+
+.modal-acoes button {
+    min-height: 40px;
+
+    padding: 9px 15px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* ================================= */
+/* BOTÃO CANCELAR */
+/* ================================= */
+
+.botao-cancelar {
+    border: 1px solid var(--border);
+
+    background: white;
+
+    color: var(--text);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.botao-cancelar:hover {
+    background: #f8faf9;
+
+    border-color: #d1d9d4;
+}
+
+
+/* ================================= */
+/* BOTÃO CONFIRMAR */
+/* ================================= */
+
+.botao-confirmar {
+    border: none;
+
+    background: var(--green);
+
+    color: white;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+.botao-confirmar:hover {
+    background: var(--green-dark);
+}
+
+.botao-confirmar:active {
+    transform: scale(0.98);
+}
+
+
+/* ================================= */
+/* MODAL DE CONTA */
+/* ================================= */
+
+#modal-conta .botao-confirmar {
+    background: var(--primary);
+}
+
+#modal-conta .botao-confirmar:hover {
+    background: var(--primary-hover);
+}
+
+
+/* ================================= */
+/* MODAL DE POUPANÇA */
+/* ================================= */
+
+#modal-poupanca .botao-confirmar {
+    background: var(--green);
+}
+
+#modal-poupanca .botao-confirmar:hover {
+    background: var(--green-dark);
+}
+
+
+/* ================================= */
+/* RESPONSIVO */
+/* ================================= */
+
+@media (max-width: 700px) {
+
+    .container {
+        width: calc(100% - 24px);
+
+        padding: 24px 0;
+    }
+
+
+    /* Header */
+
+    .header {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 18px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+
+    /* Mês */
+
+    .mes-selector {
+        justify-content: space-between;
+    }
+
+    #mes-atual {
+        flex: 1;
+
+        min-width: 0;
+    }
+
+
+    /* Resumo */
+
+    .resumo {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+
+        margin-bottom: 20px;
+    }
+
+    .resumo-item {
+        padding: 18px;
+    }
+
+    .resumo-item strong {
+        font-size: 22px;
+    }
+
+
+    /* Contas */
+
+    .contas-header {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 15px;
+    }
+
+    #adicionar-conta {
+        width: 100%;
+    }
+
+
+    /* Tabela */
+
+    th,
+    td {
+        padding: 14px 16px;
+    }
+
+
+    /* Poupança */
+
+    .poupanca-card {
+        padding: 18px;
+    }
+
+    .poupanca-conteudo strong {
+        font-size: 22px;
+    }
+
+
+    /* Modal */
+
+    .modal-overlay {
+        align-items: flex-end;
+
+        padding: 12px;
+    }
+
+    .modal {
+        width: 100%;
+
+        border-radius: 16px;
+    }
+
+    .modal-header {
+        padding: 20px;
+    }
+
+    #form-conta,
+    #form-poupanca {
+        padding: 20px;
+    }
+
+    .modal-acoes {
+        flex-direction: column-reverse;
+    }
+
+    .modal-acoes button {
+        width: 100%;
+    }
+}
+
+
+/* ================================= */
+/* TELAS MUITO PEQUENAS */
+/* ================================= */
+
+@media (max-width: 400px) {
+
+    .container {
+        width: calc(100% - 16px);
+
+        padding: 18px 0;
+    }
+
+    .header h1 {
+        font-size: 22px;
+    }
+
+    .header p {
+        font-size: 13px;
+    }
+
+    .resumo-item {
+        padding: 16px;
+    }
+
+    th,
+    td {
+        padding: 12px;
+
+        font-size: 13px;
+    }
+
+    th {
+        font-size: 10px;
+    }
+
+    .botao-pagar {
+        padding: 7px 10px;
+    }
+
+    .botao-excluir {
+        padding: 6px;
+    }
+
+    .poupanca-card {
+        padding: 16px;
+    }
+
+
+    /* Modal */
+
+    .modal-header {
+        padding: 18px;
+    }
+
+    #form-conta,
+    #form-poupanca {
+        padding: 18px;
+    }
+
+    .modal-header h2 {
+        font-size: 18px;
+    }
+}

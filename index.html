@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minhas Finanças</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <main class="container">
+
+        <!-- ============================== -->
+        <!-- CABEÇALHO -->
+        <!-- ============================== -->
+
+        <header class="header">
+
+            <div>
+                <h1>Minhas Finanças</h1>
+
+                <p>
+                    Controle financeiro mensal
+                </p>
+            </div>
+
+
+            <div class="mes-selector">
+
+                <button
+                    id="mes-anterior"
+                    aria-label="Mês anterior"
+                >
+                    ←
+                </button>
+
+
+                <span id="mes-atual">
+                    Outubro 2026
+                </span>
+
+
+                <button
+                    id="proximo-mes"
+                    aria-label="Próximo mês"
+                >
+                    →
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ============================== -->
+        <!-- RESUMO -->
+        <!-- ============================== -->
+
+        <section class="resumo">
+
+            <!-- Total -->
+
+            <div class="resumo-item">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="total">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+            <!-- Pago -->
+
+            <div class="resumo-item">
+
+                <span>
+                    Pago
+                </span>
+
+                <strong id="subtotal">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- CONTAS -->
+        <!-- ============================== -->
+
+        <section class="contas">
+
+            <div class="contas-header">
+
+                <h2>
+                    Contas
+                </h2>
+
+
+                <button
+                    id="adicionar-conta"
+                    type="button"
+                >
+                    + Adicionar conta
+                </button>
+
+            </div>
+
+
+            <!-- ============================== -->
+            <!-- TABELA -->
+            <!-- ============================== -->
+
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Dia
+                            </th>
+
+                            <th>
+                                Conta
+                            </th>
+
+                            <th>
+                                Valor
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th></th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="lista-contas">
+
+                        <!--
+                            As contas serão adicionadas
+                            pelo JavaScript.
+                        -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- POUPANÇA -->
+        <!-- ============================== -->
+
+        <section class="poupanca-card">
+
+            <div class="poupanca-conteudo">
+
+                <span>
+                    Poupança
+                </span>
+
+                <strong id="poupanca">
+                    R$ 0,00
+                </strong>
+
+
+                <button
+                    id="adicionar-poupanca"
+                    type="button"
+                >
+                    + Adicionar
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ============================== -->
+    <!-- MODAL - NOVA CONTA -->
+    <!-- ============================== -->
+
+    <div
+        id="modal-conta"
+        class="modal-overlay"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-conta-titulo"
+        >
+
+            <!-- Cabeçalho -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="modal-conta-titulo">
+                        Nova conta
+                    </h2>
+
+                    <p>
+                        Adicione uma nova conta recorrente.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="fechar-modal-conta"
+                    class="modal-fechar"
+                    type="button"
+                    aria-label="Fechar"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- Formulário -->
+
+            <form id="form-conta">
+
+                <!-- Dia -->
+
+                <div class="campo">
+
+                    <label for="conta-dia">
+                        Dia
+                    </label>
+
+                    <input
+                        type="number"
+                        id="conta-dia"
+                        name="dia"
+                        min="1"
+                        max="31"
+                        placeholder="Ex.: 10"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Nome -->
+
+                <div class="campo">
+
+                    <label for="conta-nome">
+                        Nome da conta
+                    </label>
+
+                    <input
+                        type="text"
+                        id="conta-nome"
+                        name="nome"
+                        maxlength="100"
+                        placeholder="Ex.: Internet"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Valor -->
+
+                <div class="campo">
+
+                    <label for="conta-valor">
+                        Valor
+                    </label>
+
+                    <div class="campo-valor">
+
+                        <span>
+                            R$
+                        </span>
+
+                        <input
+                            type="text"
+                            id="conta-valor"
+                            name="valor"
+                            inputmode="decimal"
+                            placeholder="0,00"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Ações -->
+
+                <div class="modal-acoes">
+
+                    <button
+                        type="button"
+                        id="cancelar-modal-conta"
+                        class="botao-cancelar"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="botao-confirmar"
+                    >
+                        Adicionar conta
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================== -->
+    <!-- MODAL - ADICIONAR À POUPANÇA -->
+    <!-- ============================== -->
+
+    <div
+        id="modal-poupanca"
+        class="modal-overlay"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal modal-poupanca"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-poupanca-titulo"
+        >
+
+            <!-- Cabeçalho -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="modal-poupanca-titulo">
+                        Adicionar à poupança
+                    </h2>
+
+                    <p>
+                        Informe quanto deseja guardar.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="fechar-modal-poupanca"
+                    class="modal-fechar"
+                    type="button"
+                    aria-label="Fechar"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- Formulário -->
+
+            <form id="form-poupanca">
+
+                <div class="campo">
+
+                    <label for="poupanca-valor">
+                        Valor
+                    </label>
+
+
+                    <div class="campo-valor campo-valor-poupanca">
+
+                        <span>
+                            R$
+                        </span>
+
+                        <input
+                            type="text"
+                            id="poupanca-valor"
+                            name="valor"
+                            inputmode="decimal"
+                            placeholder="0,00"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Ações -->
+
+                <div class="modal-acoes">
+
+                    <button
+                        type="button"
+                        id="cancelar-modal-poupanca"
+                        class="botao-cancelar"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="botao-confirmar botao-confirmar-poupanca"
+                    >
+                        Adicionar valor
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================== -->
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
