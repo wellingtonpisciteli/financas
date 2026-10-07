@@ -74,10 +74,17 @@ const CHAVE_EXCLUSOES = 'financas_exclusoes';
 
 
 // ==============================
+// MÊS INICIAL
+// ==============================
+
+let mesAtual = new Date(2026, 9, 1);
+
+
+// ==============================
 // DADOS
 // ==============================
 
-// Contas recorrentes
+// Contas
 
 let contas = JSON.parse(
     localStorage.getItem(CHAVE_CONTAS)
@@ -103,11 +110,6 @@ let poupanca = Number(
 let exclusoes = JSON.parse(
     localStorage.getItem(CHAVE_EXCLUSOES)
 ) || {};
-
-
-// Mês que está sendo visualizado
-
-let mesAtual = new Date(2026, 9, 1);
 
 
 // ==============================
@@ -184,7 +186,7 @@ function formatarMoeda(valor) {
 
 
 // ==============================
-// IDENTIFICAR O MÊS
+// IDENTIFICAR O MÊS ATUAL
 // ==============================
 
 function obterChaveMes() {
@@ -197,6 +199,29 @@ function obterChaveMes() {
     ).padStart(2, '0');
 
     return `${ano}-${mes}`;
+}
+
+
+// ==============================
+// VERIFICAR SE A CONTA PERTENCE AO MÊS
+// ==============================
+
+function contaPertenceAoMes(conta) {
+
+    /*
+     * Contas antigas não possuem a propriedade "mes".
+     *
+     * Como o projeto começou em Outubro/2026,
+     * consideramos essas contas como sendo de Outubro/2026.
+     */
+
+    if (!conta.mes) {
+
+        return obterChaveMes() === '2026-10';
+    }
+
+
+    return conta.mes === obterChaveMes();
 }
 
 
@@ -485,7 +510,12 @@ formConta.addEventListener(
 
             nome: nome,
 
-            valor: valorNumerico
+            valor: valorNumerico,
+
+            // A conta pertence somente
+            // ao mês em que foi criada.
+
+            mes: obterChaveMes()
         };
 
 
@@ -687,8 +717,19 @@ function renderizarContas() {
         .sort((a, b) => a.dia - b.dia)
         .forEach(conta => {
 
-            // Se a conta foi excluída
-            // neste mês, não aparece.
+            // ==============================
+            // VERIFICAR SE PERTENCE AO MÊS
+            // ==============================
+
+            if (!contaPertenceAoMes(conta)) {
+
+                return;
+            }
+
+
+            // ==============================
+            // VERIFICAR EXCLUSÃO
+            // ==============================
 
             if (contaFoiExcluida(conta)) {
 
@@ -835,7 +876,9 @@ function atualizarResumo() {
 
     const contasDoMes =
         contas.filter(
-            conta => !contaFoiExcluida(conta)
+            conta =>
+                contaPertenceAoMes(conta) &&
+                !contaFoiExcluida(conta)
         );
 
 
