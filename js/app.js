@@ -3,6 +3,7 @@ const botaoAdicionar = document.getElementById('adicionar-conta');
 
 const totalElemento = document.getElementById('total');
 const subtotalElemento = document.getElementById('subtotal');
+const restanteElemento = document.getElementById('restante');
 
 const mesAtualElemento = document.getElementById('mes-atual');
 const botaoMesAnterior = document.getElementById('mes-anterior');
@@ -220,7 +221,6 @@ function contaPertenceAoMes(conta) {
         return obterChaveMes() === '2026-10';
     }
 
-
     return conta.mes === obterChaveMes();
 }
 
@@ -264,18 +264,15 @@ function excluirContaDoMes(contaId) {
     const chaveMes =
         obterChaveMes();
 
-
     if (!exclusoes[chaveMes]) {
 
         exclusoes[chaveMes] = [];
     }
 
-
     if (!exclusoes[chaveMes].includes(contaId)) {
 
         exclusoes[chaveMes].push(contaId);
     }
-
 
     // Remove o pagamento daquele mês
 
@@ -286,7 +283,6 @@ function excluirContaDoMes(contaId) {
                 id => id !== contaId
             );
     }
-
 
     salvarExclusoes();
     salvarPagamentos();
@@ -304,18 +300,15 @@ function pagarConta(contaId) {
     const chaveMes =
         obterChaveMes();
 
-
     if (!pagamentos[chaveMes]) {
 
         pagamentos[chaveMes] = [];
     }
 
-
     if (!pagamentos[chaveMes].includes(contaId)) {
 
         pagamentos[chaveMes].push(contaId);
     }
-
 
     salvarPagamentos();
 
@@ -336,9 +329,7 @@ function abrirModalConta() {
         'false'
     );
 
-
     formConta.reset();
-
 
     setTimeout(() => {
 
@@ -360,7 +351,6 @@ function fecharModalContaFunc() {
         'aria-hidden',
         'true'
     );
-
 
     formConta.reset();
 }
@@ -418,14 +408,11 @@ formConta.addEventListener(
 
         event.preventDefault();
 
-
         const dia =
             Number(campoDia.value);
 
-
         const nome =
             campoNome.value.trim();
-
 
         const valor =
             campoValor.value.trim();
@@ -521,12 +508,9 @@ formConta.addEventListener(
 
         contas.push(novaConta);
 
-
         salvarContas();
 
-
         renderizarContas();
-
 
         fecharModalContaFunc();
     }
@@ -546,9 +530,7 @@ function abrirModalPoupanca() {
         'false'
     );
 
-
     formPoupanca.reset();
-
 
     setTimeout(() => {
 
@@ -570,7 +552,6 @@ function fecharModalPoupancaFunc() {
         'aria-hidden',
         'true'
     );
-
 
     formPoupanca.reset();
 }
@@ -631,10 +612,8 @@ formPoupanca.addEventListener(
 
         event.preventDefault();
 
-
         const valor =
             campoPoupancaValor.value.trim();
-
 
         const valorNumerico =
             Number(
@@ -661,11 +640,9 @@ formPoupanca.addEventListener(
 
         poupanca += valorNumerico;
 
-
         salvarPoupanca();
 
         atualizarPoupanca();
-
 
         fecharModalPoupancaFunc();
     }
@@ -695,10 +672,8 @@ function atualizarMes() {
     const ano =
         mesAtual.getFullYear();
 
-
     mesAtualElemento.textContent =
         `${mes} ${ano}`;
-
 
     renderizarContas();
 }
@@ -711,7 +686,6 @@ function atualizarMes() {
 function renderizarContas() {
 
     listaContas.innerHTML = '';
-
 
     contas
         .sort((a, b) => a.dia - b.dia)
@@ -902,12 +876,24 @@ function atualizarResumo() {
             );
 
 
+    // ==============================
+    // RESTANTE
+    // ==============================
+
+    const restante =
+        total - subtotal;
+
+
     totalElemento.textContent =
         formatarMoeda(total);
 
 
     subtotalElemento.textContent =
         formatarMoeda(subtotal);
+
+
+    restanteElemento.textContent =
+        formatarMoeda(restante);
 
 
     atualizarPoupanca();
@@ -926,7 +912,6 @@ botaoMesAnterior.addEventListener(
             mesAtual.getMonth() - 1
         );
 
-
         atualizarMes();
     }
 );
@@ -943,7 +928,6 @@ botaoProximoMes.addEventListener(
         mesAtual.setMonth(
             mesAtual.getMonth() + 1
         );
-
 
         atualizarMes();
     }
