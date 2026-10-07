@@ -763,7 +763,7 @@ function renderizarContas() {
                         pago
                             ? `
                                 <span class="status-pago">
-                                    ✓ Pago
+                                    Pago
                                 </span>
                             `
                             : `
