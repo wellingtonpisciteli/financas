@@ -1,3 +1,7 @@
+/* ================================= */
+/* RESET */
+/* ================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -26,10 +30,8 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-
     background: var(--background);
     color: var(--text);
-
     min-height: 100vh;
 }
 
@@ -42,41 +44,39 @@ button {
     cursor: pointer;
 }
 
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+}
+
 .container {
     width: min(1200px, calc(100% - 40px));
-
     margin: 0 auto;
-
     padding: 40px 0;
 }
 
 
 /* ================================= */
-/* HEADER */
+/* CABEÇALHO */
 /* ================================= */
 
 .header {
     display: flex;
-
     justify-content: space-between;
     align-items: center;
-
     gap: 20px;
-
     margin-bottom: 30px;
 }
 
 .header h1 {
     font-size: 28px;
-
     margin-bottom: 6px;
-
     letter-spacing: -0.5px;
 }
 
 .header p {
     color: var(--muted);
-
     font-size: 14px;
 }
 
@@ -87,55 +87,35 @@ button {
 
 .mes-selector {
     display: flex;
-
     align-items: center;
-
     gap: 8px;
-
     background: var(--surface);
-
     border: 1px solid var(--border);
-
     border-radius: 10px;
-
     padding: 5px;
-
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .mes-selector button {
     width: 36px;
     height: 36px;
-
     border: none;
-
     background: transparent;
-
     color: var(--text);
-
     border-radius: 7px;
-
     font-size: 18px;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .mes-selector button:hover {
     background: var(--green-light);
-
     color: var(--green-dark);
 }
 
 #mes-atual {
     min-width: 130px;
-
     text-align: center;
-
     font-size: 14px;
-
     font-weight: 600;
 }
 
@@ -146,67 +126,46 @@ button {
 
 .resumo {
     display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
-
     margin-bottom: 30px;
 }
 
 .resumo-item {
     position: relative;
-
     background: var(--surface);
-
     border: 1px solid var(--border);
-
     border-radius: 14px;
-
     padding: 22px;
-
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.03);
-
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
     overflow: hidden;
 }
 
 .resumo-item::before {
     content: "";
-
     position: absolute;
-
     left: 0;
     top: 0;
-
     width: 4px;
     height: 100%;
-
     background: var(--primary);
 }
 
 .resumo-item span {
     display: block;
-
     color: var(--muted);
-
     font-size: 13px;
-
     font-weight: 600;
-
     margin-bottom: 10px;
-
     text-transform: uppercase;
-
     letter-spacing: 0.03em;
 }
 
 .resumo-item strong {
     display: block;
-
     font-size: 25px;
-
     letter-spacing: -0.5px;
+    overflow-wrap: anywhere;
 }
 
 
@@ -216,83 +175,52 @@ button {
 
 .poupanca-card {
     position: relative;
-
     background: var(--surface);
-
     border: 1px solid var(--border);
-
     border-radius: 14px;
-
     padding: 22px;
-
     margin-top: 16px;
-
-    box-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.03);
-
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
     overflow: hidden;
 }
 
 .poupanca-card::before {
     content: "";
-
     position: absolute;
-
     left: 0;
     top: 0;
-
     width: 4px;
     height: 100%;
-
     background: var(--green);
 }
 
 .poupanca-conteudo span {
     display: block;
-
     color: var(--muted);
-
     font-size: 13px;
-
     font-weight: 600;
-
     margin-bottom: 10px;
-
     text-transform: uppercase;
-
     letter-spacing: 0.03em;
 }
 
 .poupanca-conteudo strong {
     display: block;
-
     color: var(--green-dark);
-
     font-size: 25px;
-
     letter-spacing: -0.5px;
 }
 
 #adicionar-poupanca {
     margin-top: 12px;
-
     border: none;
-
     background: var(--green);
-
     color: white;
-
     padding: 8px 13px;
-
     border-radius: 7px;
-
     font-size: 13px;
-
     font-weight: 600;
-
-    transition:
-        background 0.2s ease,
-        transform 0.15s ease;
+    transition: background 0.2s ease, transform 0.15s ease;
 }
 
 #adicionar-poupanca:hover {
@@ -310,33 +238,23 @@ button {
 
 .contas {
     background: var(--surface);
-
     border: 1px solid var(--border);
-
     border-radius: 14px;
-
     overflow: hidden;
-
-    box-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
 }
 
 .contas-header {
     display: flex;
-
     justify-content: space-between;
     align-items: center;
-
     gap: 20px;
-
     padding: 20px 22px;
-
     border-bottom: 1px solid var(--border);
 }
 
 .contas-header h2 {
     font-size: 18px;
-
     letter-spacing: -0.2px;
 }
 
@@ -347,22 +265,13 @@ button {
 
 #adicionar-conta {
     border: none;
-
     background: var(--primary);
-
     color: white;
-
     padding: 10px 15px;
-
     border-radius: 8px;
-
     font-size: 14px;
-
     font-weight: 600;
-
-    transition:
-        background 0.2s ease,
-        transform 0.15s ease;
+    transition: background 0.2s ease, transform 0.15s ease;
 }
 
 #adicionar-conta:hover {
@@ -379,12 +288,13 @@ button {
 /* ================================= */
 
 .tabela-container {
+    width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 table {
     width: 100%;
-
     border-collapse: collapse;
 }
 
@@ -394,25 +304,18 @@ thead {
 
 th {
     text-align: left;
-
     padding: 14px 22px;
-
     color: var(--muted);
-
     font-size: 11px;
-
     font-weight: 700;
-
     text-transform: uppercase;
-
     letter-spacing: 0.06em;
+    white-space: nowrap;
 }
 
 td {
     padding: 16px 22px;
-
     border-top: 1px solid var(--border);
-
     font-size: 14px;
 }
 
@@ -424,165 +327,113 @@ tbody tr:hover {
     background: #f8faf9;
 }
 
-
-/* ================================= */
-/* VALOR */
-/* ================================= */
-
 td:nth-child(3) {
     font-weight: 600;
+    white-space: nowrap;
 }
 
 
 /* ================================= */
-/* STATUS - PAGAR */
+/* BOTÃO PAGAR */
 /* ================================= */
 
 .botao-pagar {
     border: none;
-
     background: var(--danger-light);
-
     color: var(--danger);
-
     padding: 7px 12px;
-
     border-radius: 6px;
-
     font-size: 13px;
-
     font-weight: 700;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .botao-pagar:hover {
     background: var(--danger);
-
     color: white;
 }
 
 
 /* ================================= */
-/* STATUS - PAGO */
+/* STATUS PAGO */
 /* ================================= */
 
 .status-pago {
     display: inline-flex;
-
     align-items: center;
-
     gap: 5px;
-
     color: var(--green-dark);
-
     background: var(--green-light);
-
     padding: 6px 10px;
-
     border-radius: 6px;
-
     font-size: 13px;
-
     font-weight: 700;
+    white-space: nowrap;
 }
 
 
 /* ================================= */
-/* BOTÃO EXCLUIR */
+/* BOTÃO EXCLUIR NA TABELA */
 /* ================================= */
 
 .botao-excluir {
     border: none;
-
     background: transparent;
-
     color: #9ca3af;
-
     padding: 6px 8px;
-
     border-radius: 6px;
-
     font-size: 13px;
-
     font-weight: 600;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .botao-excluir:hover {
     background: var(--danger-light);
-
     color: var(--danger);
 }
 
 
 /* ================================= */
-/* MODAL */
+/* CAMADA DOS MODAIS */
 /* ================================= */
 
 .modal-overlay {
     position: fixed;
-
     inset: 0;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     padding: 20px;
-
     background: rgba(0, 0, 0, 0.55);
-
     opacity: 0;
-
     visibility: hidden;
-
     pointer-events: none;
-
-    transition:
-        opacity 0.2s ease,
-        visibility 0.2s ease;
-
+    transition: opacity 0.2s ease, visibility 0.2s ease;
     z-index: 1000;
 }
 
 .modal-overlay.ativo {
     opacity: 1;
-
     visibility: visible;
-
     pointer-events: auto;
 }
 
 
 /* ================================= */
-/* CAIXA DO MODAL */
+/* CAIXA DOS MODAIS */
 /* ================================= */
 
 .modal {
     width: min(100%, 460px);
-
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
     background: var(--surface);
-
     border: 1px solid var(--border);
-
     border-radius: 16px;
-
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.18);
-
-    overflow: hidden;
-
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
     transform: translateY(10px) scale(0.98);
-
-    transition:
-        transform 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
 .modal-overlay.ativo .modal {
@@ -591,74 +442,53 @@ td:nth-child(3) {
 
 
 /* ================================= */
-/* CABEÇALHO DO MODAL */
+/* CABEÇALHO DOS MODAIS */
 /* ================================= */
 
 .modal-header {
     display: flex;
-
     justify-content: space-between;
     align-items: flex-start;
-
     gap: 20px;
-
     padding: 22px;
-
     border-bottom: 1px solid var(--border);
 }
 
 .modal-header h2 {
     font-size: 20px;
-
     margin-bottom: 5px;
-
     letter-spacing: -0.3px;
 }
 
 .modal-header p {
     color: var(--muted);
-
     font-size: 13px;
-
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 
 /* ================================= */
-/* BOTÃO FECHAR */
+/* BOTÃO FECHAR MODAL */
 /* ================================= */
 
 .modal-fechar {
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     width: 34px;
     height: 34px;
-
     flex-shrink: 0;
-
     border: none;
-
     background: transparent;
-
     color: var(--muted);
-
     border-radius: 8px;
-
     font-size: 25px;
-
     line-height: 1;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .modal-fechar:hover {
     background: var(--danger-light);
-
     color: var(--danger);
 }
 
@@ -674,7 +504,7 @@ td:nth-child(3) {
 
 
 /* ================================= */
-/* CAMPOS */
+/* CAMPOS DOS FORMULÁRIOS */
 /* ================================= */
 
 .campo {
@@ -687,38 +517,23 @@ td:nth-child(3) {
 
 .campo label {
     display: block;
-
     margin-bottom: 7px;
-
     color: var(--text);
-
     font-size: 13px;
-
     font-weight: 600;
 }
 
 .campo input {
     width: 100%;
-
     height: 44px;
-
     padding: 0 13px;
-
     border: 1px solid var(--border);
-
     border-radius: 8px;
-
     background: #ffffff;
-
     color: var(--text);
-
     font-size: 14px;
-
     outline: none;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .campo input::placeholder {
@@ -727,9 +542,7 @@ td:nth-child(3) {
 
 .campo input:focus {
     border-color: var(--green);
-
-    box-shadow:
-        0 0 0 3px rgba(22, 163, 74, 0.12);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
 }
 
 
@@ -739,87 +552,59 @@ td:nth-child(3) {
 
 .campo-valor {
     display: flex;
-
     align-items: center;
-
     height: 44px;
-
     border: 1px solid var(--border);
-
     border-radius: 8px;
-
     background: #ffffff;
-
     overflow: hidden;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .campo-valor:focus-within {
     border-color: var(--green);
-
-    box-shadow:
-        0 0 0 3px rgba(22, 163, 74, 0.12);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
 }
 
 .campo-valor span {
     padding-left: 13px;
-
     color: var(--muted);
-
     font-size: 14px;
-
     font-weight: 600;
 }
 
 .campo-valor input {
     height: 100%;
-
     border: none;
-
     border-radius: 0;
-
     box-shadow: none;
-
     padding-left: 8px;
 }
 
 .campo-valor input:focus {
     border: none;
-
     box-shadow: none;
 }
 
 
 /* ================================= */
-/* AÇÕES DO MODAL */
+/* AÇÕES DOS MODAIS */
 /* ================================= */
 
 .modal-acoes {
     display: flex;
-
     justify-content: flex-end;
-
     gap: 10px;
-
     margin-top: 24px;
-
     padding-top: 20px;
-
     border-top: 1px solid var(--border);
 }
 
 .modal-acoes button {
     min-height: 40px;
-
     padding: 9px 15px;
-
     border-radius: 8px;
-
     font-size: 13px;
-
     font-weight: 600;
 }
 
@@ -830,19 +615,13 @@ td:nth-child(3) {
 
 .botao-cancelar {
     border: 1px solid var(--border);
-
     background: white;
-
     color: var(--text);
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease;
+    transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .botao-cancelar:hover {
     background: #f8faf9;
-
     border-color: #d1d9d4;
 }
 
@@ -853,14 +632,9 @@ td:nth-child(3) {
 
 .botao-confirmar {
     border: none;
-
     background: var(--green);
-
     color: white;
-
-    transition:
-        background 0.2s ease,
-        transform 0.15s ease;
+    transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .botao-confirmar:hover {
@@ -873,7 +647,7 @@ td:nth-child(3) {
 
 
 /* ================================= */
-/* MODAL DE CONTA */
+/* MODAL DE NOVA CONTA */
 /* ================================= */
 
 #modal-conta .botao-confirmar {
@@ -899,6 +673,64 @@ td:nth-child(3) {
 
 
 /* ================================= */
+/* MODAL DE EXCLUSÃO */
+/* ================================= */
+
+.modal-excluir {
+    width: min(100%, 440px);
+}
+
+.excluir-conteudo {
+    padding: 22px;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.excluir-conteudo strong {
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.excluir-aviso {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+/* ================================= */
+/* BOTÃO CONFIRMAR EXCLUSÃO */
+/* ================================= */
+
+#confirmar-exclusao-conta {
+    border: none;
+    background: var(--danger);
+    color: #ffffff;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+#confirmar-exclusao-conta:hover {
+    background: var(--danger-hover);
+}
+
+#confirmar-exclusao-conta:active {
+    transform: scale(0.98);
+}
+
+
+/* ================================= */
+/* FOCO ACESSÍVEL */
+/* ================================= */
+
+.modal-fechar:focus-visible,
+.modal-acoes button:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+}
+
+
+/* ================================= */
 /* RESPONSIVO */
 /* ================================= */
 
@@ -906,18 +738,14 @@ td:nth-child(3) {
 
     .container {
         width: calc(100% - 24px);
-
         padding: 24px 0;
     }
 
-
-    /* Header */
+    /* Cabeçalho */
 
     .header {
         flex-direction: column;
-
         align-items: stretch;
-
         gap: 18px;
     }
 
@@ -925,8 +753,7 @@ td:nth-child(3) {
         font-size: 24px;
     }
 
-
-    /* Mês */
+    /* Seletor de mês */
 
     .mes-selector {
         justify-content: space-between;
@@ -934,18 +761,14 @@ td:nth-child(3) {
 
     #mes-atual {
         flex: 1;
-
         min-width: 0;
     }
-
 
     /* Resumo */
 
     .resumo {
         grid-template-columns: 1fr;
-
         gap: 12px;
-
         margin-bottom: 20px;
     }
 
@@ -957,14 +780,11 @@ td:nth-child(3) {
         font-size: 22px;
     }
 
-
-    /* Contas */
+    /* Cabeçalho das contas */
 
     .contas-header {
         flex-direction: column;
-
         align-items: stretch;
-
         gap: 15px;
     }
 
@@ -972,14 +792,12 @@ td:nth-child(3) {
         width: 100%;
     }
 
-
     /* Tabela */
 
     th,
     td {
         padding: 14px 16px;
     }
-
 
     /* Poupança */
 
@@ -991,18 +809,16 @@ td:nth-child(3) {
         font-size: 22px;
     }
 
-
-    /* Modal */
+    /* Modais */
 
     .modal-overlay {
         align-items: flex-end;
-
         padding: 12px;
     }
 
     .modal {
         width: 100%;
-
+        max-height: calc(100dvh - 24px);
         border-radius: 16px;
     }
 
@@ -1021,6 +837,18 @@ td:nth-child(3) {
 
     .modal-acoes button {
         width: 100%;
+        min-height: 44px;
+    }
+
+    /* Modal de exclusão */
+
+    .excluir-conteudo {
+        padding: 20px;
+    }
+
+    #modal-excluir-conta .modal-acoes {
+        padding: 20px;
+        margin-top: 0;
     }
 }
 
@@ -1033,7 +861,6 @@ td:nth-child(3) {
 
     .container {
         width: calc(100% - 16px);
-
         padding: 18px 0;
     }
 
@@ -1052,7 +879,6 @@ td:nth-child(3) {
     th,
     td {
         padding: 12px;
-
         font-size: 13px;
     }
 
@@ -1072,9 +898,6 @@ td:nth-child(3) {
         padding: 16px;
     }
 
-
-    /* Modal */
-
     .modal-header {
         padding: 18px;
     }
@@ -1086,5 +909,26 @@ td:nth-child(3) {
 
     .modal-header h2 {
         font-size: 18px;
+    }
+
+    .excluir-conteudo {
+        padding: 18px;
+    }
+}
+
+
+/* ================================= */
+/* REDUZIR ANIMAÇÕES */
+/* ================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
