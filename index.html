@@ -26,7 +26,6 @@
                 </p>
             </div>
 
-
             <div class="mes-selector">
 
                 <button
@@ -36,11 +35,9 @@
                     ←
                 </button>
 
-
                 <span id="mes-atual">
                     Outubro 2026
                 </span>
-
 
                 <button
                     id="proximo-mes"
@@ -60,48 +57,28 @@
 
         <section class="resumo">
 
-            <!-- Total -->
-
             <div class="resumo-item">
-
-                <span>
-                    Total
-                </span>
+                <span>Total</span>
 
                 <strong id="total">
                     R$ 0,00
                 </strong>
-
             </div>
 
-
-            <!-- Pago -->
-
             <div class="resumo-item">
-
-                <span>
-                    Pago
-                </span>
+                <span>Pago</span>
 
                 <strong id="subtotal">
                     R$ 0,00
                 </strong>
-
             </div>
 
-
-            <!-- Restante -->
-
             <div class="resumo-item">
-
-                <span>
-                    Restante
-                </span>
+                <span>Restante</span>
 
                 <strong id="restante">
                     R$ 0,00
                 </strong>
-
             </div>
 
         </section>
@@ -115,10 +92,7 @@
 
             <div class="contas-header">
 
-                <h2>
-                    Contas
-                </h2>
-
+                <h2>Contas</h2>
 
                 <button
                     id="adicionar-conta"
@@ -130,50 +104,24 @@
             </div>
 
 
-            <!-- ============================== -->
             <!-- TABELA -->
-            <!-- ============================== -->
 
             <div class="tabela-container">
 
                 <table>
 
                     <thead>
-
                         <tr>
-
-                            <th>
-                                Dia
-                            </th>
-
-                            <th>
-                                Conta
-                            </th>
-
-                            <th>
-                                Valor
-                            </th>
-
-                            <th>
-                                Status
-                            </th>
-
-                            <th>
-                                Ações
-                            </th>
-
+                            <th>Dia</th>
+                            <th>Conta</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                            <th>Ações</th>
                         </tr>
-
                     </thead>
 
-
                     <tbody id="lista-contas">
-
-                        <!--
-                            As contas serão adicionadas
-                            pelo JavaScript.
-                        -->
-
+                        <!-- Contas adicionadas pelo JavaScript -->
                     </tbody>
 
                 </table>
@@ -191,14 +139,11 @@
 
             <div class="poupanca-conteudo">
 
-                <span>
-                    Poupança
-                </span>
+                <span>Poupança</span>
 
                 <strong id="poupanca">
                     R$ 0,00
                 </strong>
-
 
                 <button
                     id="adicionar-poupanca"
@@ -231,12 +176,9 @@
             aria-labelledby="modal-conta-titulo"
         >
 
-            <!-- Cabeçalho -->
-
             <div class="modal-header">
 
                 <div>
-
                     <h2 id="modal-conta-titulo">
                         Nova conta
                     </h2>
@@ -244,9 +186,7 @@
                     <p>
                         Adicione uma nova conta recorrente.
                     </p>
-
                 </div>
-
 
                 <button
                     id="fechar-modal-conta"
@@ -260,11 +200,9 @@
             </div>
 
 
-            <!-- Formulário -->
+            <!-- FORMULÁRIO -->
 
             <form id="form-conta">
-
-                <!-- Dia -->
 
                 <div class="campo">
 
@@ -285,8 +223,6 @@
                 </div>
 
 
-                <!-- Nome -->
-
                 <div class="campo">
 
                     <label for="conta-nome">
@@ -305,8 +241,6 @@
                 </div>
 
 
-                <!-- Valor -->
-
                 <div class="campo">
 
                     <label for="conta-valor">
@@ -315,9 +249,7 @@
 
                     <div class="campo-valor">
 
-                        <span>
-                            R$
-                        </span>
+                        <span>R$</span>
 
                         <input
                             type="text"
@@ -333,8 +265,6 @@
                 </div>
 
 
-                <!-- Ações -->
-
                 <div class="modal-acoes">
 
                     <button
@@ -344,7 +274,6 @@
                     >
                         Cancelar
                     </button>
-
 
                     <button
                         type="submit"
@@ -379,12 +308,9 @@
             aria-labelledby="modal-poupanca-titulo"
         >
 
-            <!-- Cabeçalho -->
-
             <div class="modal-header">
 
                 <div>
-
                     <h2 id="modal-poupanca-titulo">
                         Adicionar à poupança
                     </h2>
@@ -392,9 +318,7 @@
                     <p>
                         Informe quanto deseja guardar.
                     </p>
-
                 </div>
-
 
                 <button
                     id="fechar-modal-poupanca"
@@ -408,7 +332,7 @@
             </div>
 
 
-            <!-- Formulário -->
+            <!-- FORMULÁRIO -->
 
             <form id="form-poupanca">
 
@@ -418,12 +342,9 @@
                         Valor
                     </label>
 
-
                     <div class="campo-valor campo-valor-poupanca">
 
-                        <span>
-                            R$
-                        </span>
+                        <span>R$</span>
 
                         <input
                             type="text"
@@ -439,8 +360,6 @@
                 </div>
 
 
-                <!-- Ações -->
-
                 <div class="modal-acoes">
 
                     <button
@@ -450,7 +369,6 @@
                     >
                         Cancelar
                     </button>
-
 
                     <button
                         type="submit"
@@ -462,6 +380,95 @@
                 </div>
 
             </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================== -->
+    <!-- MODAL - EXCLUIR CONTA -->
+    <!-- ============================== -->
+
+    <div
+        id="modal-excluir-conta"
+        class="modal-overlay"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal modal-excluir"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-excluir-titulo"
+        >
+
+            <!-- CABEÇALHO -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="modal-excluir-titulo">
+                        Excluir conta
+                    </h2>
+
+                    <p>
+                        Tem certeza de que deseja excluir esta conta?
+                    </p>
+
+                </div>
+
+                <button
+                    id="fechar-modal-excluir"
+                    class="modal-fechar"
+                    type="button"
+                    aria-label="Fechar"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- MENSAGEM DE CONFIRMAÇÃO -->
+
+            <div class="excluir-conteudo">
+
+                <p>
+                    A conta
+                    <strong id="nome-conta-excluir"></strong>
+                    será excluída permanentemente.
+                </p>
+
+                <p class="excluir-aviso">
+                    Essa ação não poderá ser desfeita.
+                </p>
+
+            </div>
+
+
+            <!-- AÇÕES -->
+
+            <div class="modal-acoes">
+
+                <button
+                    type="button"
+                    id="cancelar-modal-excluir"
+                    class="botao-cancelar"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="button"
+                    id="confirmar-exclusao-conta"
+                    class="botao-excluir"
+                >
+                    Excluir conta
+                </button>
+
+            </div>
 
         </div>
 
