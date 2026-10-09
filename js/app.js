@@ -1,3 +1,7 @@
+// ==============================
+// ELEMENTOS PRINCIPAIS
+// ==============================
+
 const listaContas = document.getElementById('lista-contas');
 const botaoAdicionar = document.getElementById('adicionar-conta');
 
@@ -51,6 +55,28 @@ const cancelarModalPoupanca =
 
 const campoPoupancaValor =
     document.getElementById('poupanca-valor');
+
+
+// ==============================
+// MODAL DE EXCLUSÃO
+// ==============================
+
+const modalExcluirConta =
+    document.getElementById('modal-excluir-conta');
+
+const nomeContaExcluir =
+    document.getElementById('nome-conta-excluir');
+
+const fecharModalExcluir =
+    document.getElementById('fechar-modal-excluir');
+
+const cancelarModalExcluir =
+    document.getElementById('cancelar-modal-excluir');
+
+const confirmarExclusaoConta =
+    document.getElementById('confirmar-exclusao-conta');
+
+let contaSelecionadaParaExcluir = null;
 
 
 // ==============================
@@ -192,8 +218,7 @@ function formatarMoeda(valor) {
 
 function obterChaveMes() {
 
-    const ano =
-        mesAtual.getFullYear();
+    const ano = mesAtual.getFullYear();
 
     const mes = String(
         mesAtual.getMonth() + 1
@@ -211,13 +236,10 @@ function contaPertenceAoMes(conta) {
 
     /*
      * Contas antigas não possuem a propriedade "mes".
-     *
-     * Como o projeto começou em Outubro/2026,
-     * consideramos essas contas como sendo de Outubro/2026.
+     * Essas contas são consideradas de Outubro/2026.
      */
 
     if (!conta.mes) {
-
         return obterChaveMes() === '2026-10';
     }
 
@@ -231,8 +253,7 @@ function contaPertenceAoMes(conta) {
 
 function contaFoiPaga(conta) {
 
-    const chaveMes =
-        obterChaveMes();
+    const chaveMes = obterChaveMes();
 
     return pagamentos[chaveMes]?.includes(
         conta.id
@@ -246,8 +267,7 @@ function contaFoiPaga(conta) {
 
 function contaFoiExcluida(conta) {
 
-    const chaveMes =
-        obterChaveMes();
+    const chaveMes = obterChaveMes();
 
     return exclusoes[chaveMes]?.includes(
         conta.id
@@ -261,20 +281,17 @@ function contaFoiExcluida(conta) {
 
 function excluirContaDoMes(contaId) {
 
-    const chaveMes =
-        obterChaveMes();
+    const chaveMes = obterChaveMes();
 
     if (!exclusoes[chaveMes]) {
-
         exclusoes[chaveMes] = [];
     }
 
     if (!exclusoes[chaveMes].includes(contaId)) {
-
         exclusoes[chaveMes].push(contaId);
     }
 
-    // Remove o pagamento daquele mês
+    // Remove o pagamento apenas deste mês.
 
     if (pagamentos[chaveMes]) {
 
@@ -297,16 +314,13 @@ function excluirContaDoMes(contaId) {
 
 function pagarConta(contaId) {
 
-    const chaveMes =
-        obterChaveMes();
+    const chaveMes = obterChaveMes();
 
     if (!pagamentos[chaveMes]) {
-
         pagamentos[chaveMes] = [];
     }
 
     if (!pagamentos[chaveMes].includes(contaId)) {
-
         pagamentos[chaveMes].push(contaId);
     }
 
@@ -332,9 +346,7 @@ function abrirModalConta() {
     formConta.reset();
 
     setTimeout(() => {
-
         campoDia.focus();
-
     }, 100);
 }
 
@@ -375,7 +387,6 @@ fecharModalConta.addEventListener(
     fecharModalContaFunc
 );
 
-
 cancelarModalConta.addEventListener(
     'click',
     fecharModalContaFunc
@@ -391,7 +402,6 @@ modalConta.addEventListener(
     event => {
 
         if (event.target === modalConta) {
-
             fecharModalContaFunc();
         }
     }
@@ -408,19 +418,12 @@ formConta.addEventListener(
 
         event.preventDefault();
 
-        const dia =
-            Number(campoDia.value);
-
-        const nome =
-            campoNome.value.trim();
-
-        const valor =
-            campoValor.value.trim();
+        const dia = Number(campoDia.value);
+        const nome = campoNome.value.trim();
+        const valor = campoValor.value.trim();
 
 
-        // ==============================
         // VALIDAÇÃO DO DIA
-        // ==============================
 
         if (
             !Number.isInteger(dia) ||
@@ -438,15 +441,11 @@ formConta.addEventListener(
         }
 
 
-        // ==============================
         // VALIDAÇÃO DO NOME
-        // ==============================
 
         if (!nome) {
 
-            alert(
-                'Digite o nome da conta.'
-            );
+            alert('Digite o nome da conta.');
 
             campoNome.focus();
 
@@ -454,30 +453,23 @@ formConta.addEventListener(
         }
 
 
-        // ==============================
         // CONVERTER VALOR
-        // ==============================
 
-        const valorNumerico =
-            Number(
-                valor
-                    .replace(/\./g, '')
-                    .replace(',', '.')
-            );
+        const valorNumerico = Number(
+            valor
+                .replace(/\./g, '')
+                .replace(',', '.')
+        );
 
 
-        // ==============================
         // VALIDAÇÃO DO VALOR
-        // ==============================
 
         if (
-            isNaN(valorNumerico) ||
+            !Number.isFinite(valorNumerico) ||
             valorNumerico <= 0
         ) {
 
-            alert(
-                'Digite um valor válido.'
-            );
+            alert('Digite um valor válido.');
 
             campoValor.focus();
 
@@ -485,23 +477,13 @@ formConta.addEventListener(
         }
 
 
-        // ==============================
         // CRIAR CONTA
-        // ==============================
 
         const novaConta = {
-
             id: Date.now(),
-
             dia: dia,
-
             nome: nome,
-
             valor: valorNumerico,
-
-            // A conta pertence somente
-            // ao mês em que foi criada.
-
             mes: obterChaveMes()
         };
 
@@ -533,9 +515,7 @@ function abrirModalPoupanca() {
     formPoupanca.reset();
 
     setTimeout(() => {
-
         campoPoupancaValor.focus();
-
     }, 100);
 }
 
@@ -579,7 +559,6 @@ fecharModalPoupanca.addEventListener(
     fecharModalPoupancaFunc
 );
 
-
 cancelarModalPoupanca.addEventListener(
     'click',
     fecharModalPoupancaFunc
@@ -595,7 +574,6 @@ modalPoupanca.addEventListener(
     event => {
 
         if (event.target === modalPoupanca) {
-
             fecharModalPoupancaFunc();
         }
     }
@@ -612,25 +590,21 @@ formPoupanca.addEventListener(
 
         event.preventDefault();
 
-        const valor =
-            campoPoupancaValor.value.trim();
+        const valor = campoPoupancaValor.value.trim();
 
-        const valorNumerico =
-            Number(
-                valor
-                    .replace(/\./g, '')
-                    .replace(',', '.')
-            );
+        const valorNumerico = Number(
+            valor
+                .replace(/\./g, '')
+                .replace(',', '.')
+        );
 
 
         if (
-            isNaN(valorNumerico) ||
+            !Number.isFinite(valorNumerico) ||
             valorNumerico <= 0
         ) {
 
-            alert(
-                'Digite um valor válido.'
-            );
+            alert('Digite um valor válido.');
 
             campoPoupancaValor.focus();
 
@@ -661,16 +635,107 @@ function atualizarPoupanca() {
 
 
 // ==============================
+// ABRIR MODAL DE EXCLUSÃO
+// ==============================
+
+function abrirModalExcluirConta(conta) {
+
+    contaSelecionadaParaExcluir = conta.id;
+
+    nomeContaExcluir.textContent = conta.nome;
+
+    modalExcluirConta.classList.add('ativo');
+
+    modalExcluirConta.setAttribute(
+        'aria-hidden',
+        'false'
+    );
+
+    confirmarExclusaoConta.focus();
+}
+
+
+// ==============================
+// FECHAR MODAL DE EXCLUSÃO
+// ==============================
+
+function fecharModalExcluirConta() {
+
+    modalExcluirConta.classList.remove('ativo');
+
+    modalExcluirConta.setAttribute(
+        'aria-hidden',
+        'true'
+    );
+
+    contaSelecionadaParaExcluir = null;
+}
+
+
+// ==============================
+// BOTÃO FECHAR MODAL DE EXCLUSÃO
+// ==============================
+
+fecharModalExcluir.addEventListener(
+    'click',
+    fecharModalExcluirConta
+);
+
+
+// ==============================
+// BOTÃO CANCELAR EXCLUSÃO
+// ==============================
+
+cancelarModalExcluir.addEventListener(
+    'click',
+    fecharModalExcluirConta
+);
+
+
+// ==============================
+// FECHAR EXCLUSÃO CLICANDO FORA
+// ==============================
+
+modalExcluirConta.addEventListener(
+    'click',
+    event => {
+
+        if (event.target === modalExcluirConta) {
+            fecharModalExcluirConta();
+        }
+    }
+);
+
+
+// ==============================
+// CONFIRMAR EXCLUSÃO
+// ==============================
+
+confirmarExclusaoConta.addEventListener(
+    'click',
+    () => {
+
+        if (contaSelecionadaParaExcluir === null) {
+            return;
+        }
+
+        excluirContaDoMes(
+            contaSelecionadaParaExcluir
+        );
+
+        fecharModalExcluirConta();
+    }
+);
+
+
+// ==============================
 // ATUALIZAR MÊS NA TELA
 // ==============================
 
 function atualizarMes() {
 
-    const mes =
-        nomesMeses[mesAtual.getMonth()];
-
-    const ano =
-        mesAtual.getFullYear();
+    const mes = nomesMeses[mesAtual.getMonth()];
+    const ano = mesAtual.getFullYear();
 
     mesAtualElemento.textContent =
         `${mes} ${ano}`;
@@ -687,36 +752,29 @@ function renderizarContas() {
 
     listaContas.innerHTML = '';
 
+    // Ordena por dia crescente.
+
     contas
         .sort((a, b) => a.dia - b.dia)
         .forEach(conta => {
 
-            // ==============================
             // VERIFICAR SE PERTENCE AO MÊS
-            // ==============================
 
             if (!contaPertenceAoMes(conta)) {
-
                 return;
             }
 
 
-            // ==============================
             // VERIFICAR EXCLUSÃO
-            // ==============================
 
             if (contaFoiExcluida(conta)) {
-
                 return;
             }
 
 
-            const linha =
-                document.createElement('tr');
+            const linha = document.createElement('tr');
 
-
-            const pago =
-                contaFoiPaga(conta);
+            const pago = contaFoiPaga(conta);
 
 
             linha.innerHTML = `
@@ -724,9 +782,7 @@ function renderizarContas() {
                     ${conta.dia}
                 </td>
 
-                <td>
-                    ${conta.nome}
-                </td>
+                <td></td>
 
                 <td>
                     ${formatarMoeda(conta.valor)}
@@ -742,6 +798,7 @@ function renderizarContas() {
                             `
                             : `
                                 <button
+                                    type="button"
                                     class="botao-pagar"
                                     data-conta-id="${conta.id}"
                                 >
@@ -753,6 +810,7 @@ function renderizarContas() {
 
                 <td>
                     <button
+                        type="button"
                         class="botao-excluir"
                         data-conta-id="${conta.id}"
                     >
@@ -762,6 +820,11 @@ function renderizarContas() {
             `;
 
 
+            // Insere o nome como texto, evitando interpretar
+            // caracteres do nome como HTML.
+
+            linha.children[1].textContent = conta.nome;
+
             listaContas.appendChild(linha);
         });
 
@@ -770,7 +833,7 @@ function renderizarContas() {
     // BOTÕES PAGAR
     // ==============================
 
-    document
+    listaContas
         .querySelectorAll('.botao-pagar')
         .forEach(botao => {
 
@@ -778,10 +841,9 @@ function renderizarContas() {
                 'click',
                 () => {
 
-                    const contaId =
-                        Number(
-                            botao.dataset.contaId
-                        );
+                    const contaId = Number(
+                        botao.dataset.contaId
+                    );
 
                     pagarConta(contaId);
                 }
@@ -793,7 +855,7 @@ function renderizarContas() {
     // BOTÕES EXCLUIR
     // ==============================
 
-    document
+    listaContas
         .querySelectorAll('.botao-excluir')
         .forEach(botao => {
 
@@ -801,38 +863,19 @@ function renderizarContas() {
                 'click',
                 () => {
 
-                    const contaId =
-                        Number(
-                            botao.dataset.contaId
-                        );
+                    const contaId = Number(
+                        botao.dataset.contaId
+                    );
 
-
-                    const conta =
-                        contas.find(
-                            conta =>
-                                conta.id === contaId
-                        );
-
+                    const conta = contas.find(
+                        item => item.id === contaId
+                    );
 
                     if (!conta) {
-
                         return;
                     }
 
-
-                    const confirmar =
-                        confirm(
-                            `Excluir "${conta.nome}" apenas de ${nomesMeses[mesAtual.getMonth()]} ${mesAtual.getFullYear()}?`
-                        );
-
-
-                    if (!confirmar) {
-
-                        return;
-                    }
-
-
-                    excluirContaDoMes(contaId);
+                    abrirModalExcluirConta(conta);
                 }
             );
         });
@@ -848,49 +891,35 @@ function renderizarContas() {
 
 function atualizarResumo() {
 
-    const contasDoMes =
-        contas.filter(
-            conta =>
-                contaPertenceAoMes(conta) &&
-                !contaFoiExcluida(conta)
-        );
+    const contasDoMes = contas.filter(
+        conta =>
+            contaPertenceAoMes(conta) &&
+            !contaFoiExcluida(conta)
+    );
 
 
-    const total =
-        contasDoMes.reduce(
-            (soma, conta) =>
-                soma + conta.valor,
+    const total = contasDoMes.reduce(
+        (soma, conta) => soma + conta.valor,
+        0
+    );
+
+
+    const subtotal = contasDoMes
+        .filter(conta => contaFoiPaga(conta))
+        .reduce(
+            (soma, conta) => soma + conta.valor,
             0
         );
 
 
-    const subtotal =
-        contasDoMes
-            .filter(
-                conta => contaFoiPaga(conta)
-            )
-            .reduce(
-                (soma, conta) =>
-                    soma + conta.valor,
-                0
-            );
-
-
-    // ==============================
-    // RESTANTE
-    // ==============================
-
-    const restante =
-        total - subtotal;
+    const restante = total - subtotal;
 
 
     totalElemento.textContent =
         formatarMoeda(total);
 
-
     subtotalElemento.textContent =
         formatarMoeda(subtotal);
-
 
     restanteElemento.textContent =
         formatarMoeda(restante);
@@ -943,25 +972,20 @@ document.addEventListener(
     event => {
 
         if (event.key !== 'Escape') {
-
             return;
         }
 
+        if (modalExcluirConta.classList.contains('ativo')) {
+            fecharModalExcluirConta();
+            return;
+        }
 
-        if (
-            modalConta.classList.contains('ativo')
-        ) {
-
+        if (modalConta.classList.contains('ativo')) {
             fecharModalContaFunc();
-
             return;
         }
 
-
-        if (
-            modalPoupanca.classList.contains('ativo')
-        ) {
-
+        if (modalPoupanca.classList.contains('ativo')) {
             fecharModalPoupancaFunc();
         }
     }
