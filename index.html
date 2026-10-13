@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -104,9 +103,6 @@
 
             </div>
 
-
-            <!-- TABELA -->
-
             <div class="tabela-container">
 
                 <table>
@@ -211,9 +207,6 @@
 
             </div>
 
-
-            <!-- FORMULÁRIO -->
-
             <form id="form-conta">
 
                 <div class="campo">
@@ -234,7 +227,6 @@
 
                 </div>
 
-
                 <div class="campo">
 
                     <label for="conta-nome">
@@ -251,7 +243,6 @@
                     >
 
                 </div>
-
 
                 <div class="campo">
 
@@ -275,7 +266,6 @@
                     </div>
 
                 </div>
-
 
                 <div class="modal-acoes">
 
@@ -343,9 +333,6 @@
 
             </div>
 
-
-            <!-- FORMULÁRIO -->
-
             <form id="form-poupanca">
 
                 <div class="campo">
@@ -370,7 +357,6 @@
                     </div>
 
                 </div>
-
 
                 <div class="modal-acoes">
 
@@ -399,6 +385,109 @@
 
 
     <!-- ============================== -->
+    <!-- MODAL - REMOVER DA POUPANÇA -->
+    <!-- ============================== -->
+
+    <div
+        id="modal-remover-poupanca"
+        class="modal-overlay"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal modal-remover-poupanca"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="titulo-remover-poupanca"
+        >
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="titulo-remover-poupanca">
+                        Remover da poupança
+                    </h2>
+
+                    <p>
+                        Informe quanto deseja retirar do saldo acumulado.
+                    </p>
+
+                </div>
+
+                <button
+                    id="fechar-modal-remover-poupanca"
+                    class="modal-fechar"
+                    type="button"
+                    aria-label="Fechar"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <form id="form-remover-poupanca">
+
+                <div class="campo">
+
+                    <label for="remover-poupanca-valor">
+                        Valor para remover
+                    </label>
+
+                    <div class="campo-valor">
+
+                        <span>R$</span>
+
+                        <input
+                            type="text"
+                            id="remover-poupanca-valor"
+                            name="valor"
+                            inputmode="decimal"
+                            placeholder="0,00"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="remover-poupanca-aviso">
+
+                    Saldo disponível:
+
+                    <strong id="saldo-remover-poupanca">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+                <div class="modal-acoes">
+
+                    <button
+                        type="button"
+                        id="cancelar-modal-remover-poupanca"
+                        class="botao-cancelar"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="botao-confirmar"
+                    >
+                        Remover valor
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================== -->
     <!-- MODAL - EXCLUIR CONTA -->
     <!-- ============================== -->
 
@@ -414,8 +503,6 @@
             aria-modal="true"
             aria-labelledby="modal-excluir-titulo"
         >
-
-            <!-- CABEÇALHO -->
 
             <div class="modal-header">
 
@@ -442,9 +529,6 @@
 
             </div>
 
-
-            <!-- MENSAGEM DE CONFIRMAÇÃO -->
-
             <div class="excluir-conteudo">
 
                 <p>
@@ -458,9 +542,6 @@
                 </p>
 
             </div>
-
-
-            <!-- AÇÕES -->
 
             <div class="modal-acoes">
 
