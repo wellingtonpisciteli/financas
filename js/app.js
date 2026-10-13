@@ -59,6 +59,29 @@ const campoPoupancaValor =
 
 
 // ==============================
+// MODAL DE REMOÇÃO DA POUPANÇA
+// ==============================
+
+const modalRemoverPoupanca =
+    document.getElementById('modal-remover-poupanca');
+
+const formRemoverPoupanca =
+    document.getElementById('form-remover-poupanca');
+
+const fecharModalRemoverPoupanca =
+    document.getElementById('fechar-modal-remover-poupanca');
+
+const cancelarModalRemoverPoupanca =
+    document.getElementById('cancelar-modal-remover-poupanca');
+
+const campoRemoverPoupancaValor =
+    document.getElementById('remover-poupanca-valor');
+
+const saldoRemoverPoupancaElemento =
+    document.getElementById('saldo-remover-poupanca');
+
+
+// ==============================
 // MODAL DE EXCLUSÃO
 // ==============================
 
@@ -90,7 +113,6 @@ const poupancaElemento =
 const botaoPoupanca =
     document.getElementById('adicionar-poupanca');
 
-// NOVO: botão para remover valor da poupança
 const botaoRemoverPoupanca =
     document.getElementById('remover-poupanca');
 
@@ -149,7 +171,6 @@ let exclusoes = JSON.parse(
 // ==============================
 
 function salvarContas() {
-
     localStorage.setItem(
         CHAVE_CONTAS,
         JSON.stringify(contas)
@@ -158,7 +179,6 @@ function salvarContas() {
 
 
 function salvarPagamentos() {
-
     localStorage.setItem(
         CHAVE_PAGAMENTOS,
         JSON.stringify(pagamentos)
@@ -167,7 +187,6 @@ function salvarPagamentos() {
 
 
 function salvarPoupanca() {
-
     localStorage.setItem(
         CHAVE_POUPANCA,
         poupanca
@@ -176,7 +195,6 @@ function salvarPoupanca() {
 
 
 function salvarExclusoes() {
-
     localStorage.setItem(
         CHAVE_EXCLUSOES,
         JSON.stringify(exclusoes)
@@ -209,7 +227,6 @@ const nomesMeses = [
 // ==============================
 
 function formatarMoeda(valor) {
-
     return valor.toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL'
@@ -222,7 +239,6 @@ function formatarMoeda(valor) {
 // ==============================
 
 function obterChaveMes() {
-
     const ano = mesAtual.getFullYear();
 
     const mes = String(
@@ -257,7 +273,6 @@ function contaPertenceAoMes(conta) {
 // ==============================
 
 function contaFoiPaga(conta) {
-
     const chaveMes = obterChaveMes();
 
     return pagamentos[chaveMes]?.includes(
@@ -271,7 +286,6 @@ function contaFoiPaga(conta) {
 // ==============================
 
 function contaFoiExcluida(conta) {
-
     const chaveMes = obterChaveMes();
 
     return exclusoes[chaveMes]?.includes(
@@ -285,7 +299,6 @@ function contaFoiExcluida(conta) {
 // ==============================
 
 function excluirContaDoMes(contaId) {
-
     const chaveMes = obterChaveMes();
 
     if (!exclusoes[chaveMes]) {
@@ -299,7 +312,6 @@ function excluirContaDoMes(contaId) {
     // Remove o pagamento apenas deste mês.
 
     if (pagamentos[chaveMes]) {
-
         pagamentos[chaveMes] =
             pagamentos[chaveMes].filter(
                 id => id !== contaId
@@ -318,7 +330,6 @@ function excluirContaDoMes(contaId) {
 // ==============================
 
 function pagarConta(contaId) {
-
     const chaveMes = obterChaveMes();
 
     if (!pagamentos[chaveMes]) {
@@ -340,7 +351,6 @@ function pagarConta(contaId) {
 // ==============================
 
 function abrirModalConta() {
-
     modalConta.classList.add('ativo');
 
     modalConta.setAttribute(
@@ -361,7 +371,6 @@ function abrirModalConta() {
 // ==============================
 
 function fecharModalContaFunc() {
-
     modalConta.classList.remove('ativo');
 
     modalConta.setAttribute(
@@ -405,7 +414,6 @@ cancelarModalConta.addEventListener(
 modalConta.addEventListener(
     'click',
     event => {
-
         if (event.target === modalConta) {
             fecharModalContaFunc();
         }
@@ -420,7 +428,6 @@ modalConta.addEventListener(
 formConta.addEventListener(
     'submit',
     event => {
-
         event.preventDefault();
 
         const dia = Number(campoDia.value);
@@ -435,10 +442,7 @@ formConta.addEventListener(
             dia < 1 ||
             dia > 31
         ) {
-
-            alert(
-                'Digite um dia válido entre 1 e 31.'
-            );
+            alert('Digite um dia válido entre 1 e 31.');
 
             campoDia.focus();
 
@@ -449,7 +453,6 @@ formConta.addEventListener(
         // VALIDAÇÃO DO NOME
 
         if (!nome) {
-
             alert('Digite o nome da conta.');
 
             campoNome.focus();
@@ -473,7 +476,6 @@ formConta.addEventListener(
             !Number.isFinite(valorNumerico) ||
             valorNumerico <= 0
         ) {
-
             alert('Digite um valor válido.');
 
             campoValor.focus();
@@ -492,7 +494,6 @@ formConta.addEventListener(
             mes: obterChaveMes()
         };
 
-
         contas.push(novaConta);
 
         salvarContas();
@@ -509,7 +510,6 @@ formConta.addEventListener(
 // ==============================
 
 function abrirModalPoupanca() {
-
     modalPoupanca.classList.add('ativo');
 
     modalPoupanca.setAttribute(
@@ -530,7 +530,6 @@ function abrirModalPoupanca() {
 // ==============================
 
 function fecharModalPoupancaFunc() {
-
     modalPoupanca.classList.remove('ativo');
 
     modalPoupanca.setAttribute(
@@ -547,7 +546,6 @@ function fecharModalPoupancaFunc() {
 // ==============================
 
 if (botaoPoupanca) {
-
     botaoPoupanca.addEventListener(
         'click',
         abrirModalPoupanca
@@ -577,7 +575,6 @@ cancelarModalPoupanca.addEventListener(
 modalPoupanca.addEventListener(
     'click',
     event => {
-
         if (event.target === modalPoupanca) {
             fecharModalPoupancaFunc();
         }
@@ -592,7 +589,6 @@ modalPoupanca.addEventListener(
 formPoupanca.addEventListener(
     'submit',
     event => {
-
         event.preventDefault();
 
         const valor = campoPoupancaValor.value.trim();
@@ -608,7 +604,6 @@ formPoupanca.addEventListener(
             !Number.isFinite(valorNumerico) ||
             valorNumerico <= 0
         ) {
-
             alert('Digite um valor válido.');
 
             campoPoupancaValor.focus();
@@ -617,7 +612,9 @@ formPoupanca.addEventListener(
         }
 
 
-        poupanca += valorNumerico;
+        poupanca = Math.round(
+            (poupanca + valorNumerico) * 100
+        ) / 100;
 
         salvarPoupanca();
 
@@ -629,80 +626,155 @@ formPoupanca.addEventListener(
 
 
 // ==============================
-// NOVO: REMOVER VALOR DA POUPANÇA
+// ABRIR MODAL DE REMOÇÃO DA POUPANÇA
 // ==============================
 
-function removerValorPoupanca() {
+function abrirModalRemoverPoupanca() {
 
     if (poupanca <= 0) {
         alert('Não há saldo disponível na poupança para remover.');
         return;
     }
 
-    const valorInformado = prompt(
-        `Saldo atual: ${formatarMoeda(poupanca)}\n\nDigite o valor que deseja remover:`
+    // Atualiza o saldo exibido no modal.
+
+    saldoRemoverPoupancaElemento.textContent =
+        formatarMoeda(poupanca);
+
+    formRemoverPoupanca.reset();
+
+    modalRemoverPoupanca.classList.add('ativo');
+
+    modalRemoverPoupanca.setAttribute(
+        'aria-hidden',
+        'false'
     );
 
-    // Cancelou a operação.
-    if (valorInformado === null) {
-        return;
-    }
-
-    const valor = valorInformado.trim();
-
-    if (!valor) {
-        alert('Digite um valor válido.');
-        return;
-    }
-
-    const valorNumerico = Number(
-        valor
-            .replace(/\./g, '')
-            .replace(',', '.')
-    );
-
-    // Validar valor informado.
-    if (
-        !Number.isFinite(valorNumerico) ||
-        valorNumerico <= 0
-    ) {
-        alert('Digite um valor válido maior que zero.');
-        return;
-    }
-
-    // Não permitir retirar mais do que o saldo disponível.
-    if (valorNumerico > poupanca) {
-        alert(
-            `O valor informado é maior que o saldo disponível de ${formatarMoeda(poupanca)}.`
-        );
-        return;
-    }
-
-    // Remover o valor e arredondar para evitar diferenças de centavos.
-    poupanca = Math.round(
-        (poupanca - valorNumerico) * 100
-    ) / 100;
-
-    salvarPoupanca();
-    atualizarPoupanca();
-
-    alert(
-        `Valor de ${formatarMoeda(valorNumerico)} removido da poupança.`
-    );
+    setTimeout(() => {
+        campoRemoverPoupancaValor.focus();
+    }, 100);
 }
 
 
 // ==============================
-// NOVO: BOTÃO REMOVER POUPANÇA
+// FECHAR MODAL DE REMOÇÃO DA POUPANÇA
+// ==============================
+
+function fecharModalRemoverPoupancaFunc() {
+
+    modalRemoverPoupanca.classList.remove('ativo');
+
+    modalRemoverPoupanca.setAttribute(
+        'aria-hidden',
+        'true'
+    );
+
+    formRemoverPoupanca.reset();
+}
+
+
+// ==============================
+// BOTÃO REMOVER POUPANÇA
 // ==============================
 
 if (botaoRemoverPoupanca) {
-
     botaoRemoverPoupanca.addEventListener(
         'click',
-        removerValorPoupanca
+        abrirModalRemoverPoupanca
     );
 }
+
+
+// ==============================
+// FECHAR MODAL DE REMOÇÃO
+// ==============================
+
+fecharModalRemoverPoupanca.addEventListener(
+    'click',
+    fecharModalRemoverPoupancaFunc
+);
+
+cancelarModalRemoverPoupanca.addEventListener(
+    'click',
+    fecharModalRemoverPoupancaFunc
+);
+
+
+// ==============================
+// FECHAR REMOÇÃO CLICANDO FORA
+// ==============================
+
+modalRemoverPoupanca.addEventListener(
+    'click',
+    event => {
+        if (event.target === modalRemoverPoupanca) {
+            fecharModalRemoverPoupancaFunc();
+        }
+    }
+);
+
+
+// ==============================
+// CONFIRMAR REMOÇÃO DA POUPANÇA
+// ==============================
+
+formRemoverPoupanca.addEventListener(
+    'submit',
+    event => {
+        event.preventDefault();
+
+        const valor = campoRemoverPoupancaValor.value.trim();
+
+        const valorNumerico = Number(
+            valor
+                .replace(/\./g, '')
+                .replace(',', '.')
+        );
+
+
+        // VALIDAR VALOR INFORMADO
+
+        if (
+            !Number.isFinite(valorNumerico) ||
+            valorNumerico <= 0
+        ) {
+            alert('Digite um valor válido maior que zero.');
+
+            campoRemoverPoupancaValor.focus();
+
+            return;
+        }
+
+
+        // VALIDAR SALDO DISPONÍVEL
+
+        if (valorNumerico > poupanca) {
+            alert(
+                `O valor informado é maior que o saldo disponível de ${formatarMoeda(poupanca)}.`
+            );
+
+            campoRemoverPoupancaValor.focus();
+
+            return;
+        }
+
+
+        // REMOVER VALOR
+
+        poupanca = Math.round(
+            (poupanca - valorNumerico) * 100
+        ) / 100;
+
+
+        // SALVAR E ATUALIZAR
+
+        salvarPoupanca();
+
+        atualizarPoupanca();
+
+        fecharModalRemoverPoupancaFunc();
+    }
+);
 
 
 // ==============================
@@ -710,7 +782,6 @@ if (botaoRemoverPoupanca) {
 // ==============================
 
 function atualizarPoupanca() {
-
     poupancaElemento.textContent =
         formatarMoeda(poupanca);
 }
@@ -781,7 +852,6 @@ cancelarModalExcluir.addEventListener(
 modalExcluirConta.addEventListener(
     'click',
     event => {
-
         if (event.target === modalExcluirConta) {
             fecharModalExcluirConta();
         }
@@ -1059,6 +1129,11 @@ document.addEventListener(
 
         if (modalExcluirConta.classList.contains('ativo')) {
             fecharModalExcluirConta();
+            return;
+        }
+
+        if (modalRemoverPoupanca.classList.contains('ativo')) {
+            fecharModalRemoverPoupancaFunc();
             return;
         }
 
