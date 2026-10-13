@@ -1,4 +1,5 @@
-// ==============================
+
+ // ==============================
 // ELEMENTOS PRINCIPAIS
 // ==============================
 
@@ -88,6 +89,10 @@ const poupancaElemento =
 
 const botaoPoupanca =
     document.getElementById('adicionar-poupanca');
+
+// NOVO: botão para remover valor da poupança
+const botaoRemoverPoupanca =
+    document.getElementById('remover-poupanca');
 
 
 // ==============================
@@ -621,6 +626,83 @@ formPoupanca.addEventListener(
         fecharModalPoupancaFunc();
     }
 );
+
+
+// ==============================
+// NOVO: REMOVER VALOR DA POUPANÇA
+// ==============================
+
+function removerValorPoupanca() {
+
+    if (poupanca <= 0) {
+        alert('Não há saldo disponível na poupança para remover.');
+        return;
+    }
+
+    const valorInformado = prompt(
+        `Saldo atual: ${formatarMoeda(poupanca)}\n\nDigite o valor que deseja remover:`
+    );
+
+    // Cancelou a operação.
+    if (valorInformado === null) {
+        return;
+    }
+
+    const valor = valorInformado.trim();
+
+    if (!valor) {
+        alert('Digite um valor válido.');
+        return;
+    }
+
+    const valorNumerico = Number(
+        valor
+            .replace(/\./g, '')
+            .replace(',', '.')
+    );
+
+    // Validar valor informado.
+    if (
+        !Number.isFinite(valorNumerico) ||
+        valorNumerico <= 0
+    ) {
+        alert('Digite um valor válido maior que zero.');
+        return;
+    }
+
+    // Não permitir retirar mais do que o saldo disponível.
+    if (valorNumerico > poupanca) {
+        alert(
+            `O valor informado é maior que o saldo disponível de ${formatarMoeda(poupanca)}.`
+        );
+        return;
+    }
+
+    // Remover o valor e arredondar para evitar diferenças de centavos.
+    poupanca = Math.round(
+        (poupanca - valorNumerico) * 100
+    ) / 100;
+
+    salvarPoupanca();
+    atualizarPoupanca();
+
+    alert(
+        `Valor de ${formatarMoeda(valorNumerico)} removido da poupança.`
+    );
+}
+
+
+// ==============================
+// NOVO: BOTÃO REMOVER POUPANÇA
+// ==============================
+
+if (botaoRemoverPoupanca) {
+
+    botaoRemoverPoupanca.addEventListener(
+        'click',
+        removerValorPoupanca
+    );
+}
 
 
 // ==============================
