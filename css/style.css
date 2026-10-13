@@ -1,3 +1,4 @@
+
 /* ================================= */
 /* RESET */
 /* ================================= */
@@ -209,25 +210,58 @@ input:focus-visible {
     color: var(--green-dark);
     font-size: 25px;
     letter-spacing: -0.5px;
+    overflow-wrap: anywhere;
 }
 
-#adicionar-poupanca {
+/* Agrupamento dos botões da poupança */
+
+.poupanca-acoes {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-top: 12px;
+}
+
+#adicionar-poupanca,
+#remover-poupanca {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
     border: none;
-    background: var(--green);
-    color: white;
-    padding: 8px 13px;
+    padding: 9px 14px;
     border-radius: 7px;
     font-size: 13px;
     font-weight: 600;
-    transition: background 0.2s ease, transform 0.15s ease;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+#adicionar-poupanca {
+    background: var(--green);
+    color: white;
 }
 
 #adicionar-poupanca:hover {
     background: var(--green-dark);
 }
 
-#adicionar-poupanca:active {
+#remover-poupanca {
+    background: var(--danger-light);
+    color: var(--danger);
+    border: 1px solid transparent;
+}
+
+#remover-poupanca:hover {
+    background: var(--danger);
+    color: white;
+}
+
+#adicionar-poupanca:active,
+#remover-poupanca:active {
     transform: scale(0.98);
 }
 
@@ -498,7 +532,8 @@ td:nth-child(3) {
 /* ================================= */
 
 #form-conta,
-#form-poupanca {
+#form-poupanca,
+#form-remover-poupanca {
     padding: 22px;
 }
 
@@ -660,7 +695,7 @@ td:nth-child(3) {
 
 
 /* ================================= */
-/* MODAL DE POUPANÇA */
+/* MODAL DE ADICIONAR POUPANÇA */
 /* ================================= */
 
 #modal-poupanca .botao-confirmar {
@@ -673,7 +708,50 @@ td:nth-child(3) {
 
 
 /* ================================= */
-/* MODAL DE EXCLUSÃO */
+/* MODAL DE REMOVER POUPANÇA */
+/* ================================= */
+
+#modal-remover-poupanca .modal-header h2 {
+    color: var(--danger);
+}
+
+#modal-remover-poupanca .botao-confirmar {
+    background: var(--danger);
+    color: #ffffff;
+}
+
+#modal-remover-poupanca .botao-confirmar:hover {
+    background: var(--danger-hover);
+}
+
+#modal-remover-poupanca .campo-valor:focus-within {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+#modal-remover-poupanca .campo input:focus {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+#modal-remover-poupanca .campo-valor input:focus {
+    border: none;
+    box-shadow: none;
+}
+
+.remover-poupanca-aviso {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--danger-light);
+    color: var(--danger-hover);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* ================================= */
+/* MODAL DE EXCLUSÃO DE CONTA */
 /* ================================= */
 
 .modal-excluir {
@@ -727,6 +805,10 @@ td:nth-child(3) {
 .modal-acoes button:focus-visible {
     outline: 2px solid var(--green);
     outline-offset: 3px;
+}
+
+#modal-remover-poupanca .modal-acoes button:focus-visible {
+    outline-color: var(--danger);
 }
 
 
@@ -809,6 +891,18 @@ td:nth-child(3) {
         font-size: 22px;
     }
 
+    .poupanca-acoes {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    #adicionar-poupanca,
+    #remover-poupanca {
+        width: 100%;
+        padding: 10px 8px;
+    }
+
     /* Modais */
 
     .modal-overlay {
@@ -827,7 +921,8 @@ td:nth-child(3) {
     }
 
     #form-conta,
-    #form-poupanca {
+    #form-poupanca,
+    #form-remover-poupanca {
         padding: 20px;
     }
 
@@ -898,12 +993,17 @@ td:nth-child(3) {
         padding: 16px;
     }
 
+    .poupanca-acoes {
+        grid-template-columns: 1fr;
+    }
+
     .modal-header {
         padding: 18px;
     }
 
     #form-conta,
-    #form-poupanca {
+    #form-poupanca,
+    #form-remover-poupanca {
         padding: 18px;
     }
 
